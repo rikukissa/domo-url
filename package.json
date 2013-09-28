@@ -1,0 +1,22 @@
+{
+  "name": "domo-url",
+  "version": "0.0.0",
+  "description": "URL module for Domo-kun",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Riku Rouvila",
+  "license": "BSD",
+  "dependencies": {
+    "async": "~0.2.9",
+    "request": "~2.27.0",
+    "cheerio": "~0.12.2",
+    "coffee-script": "~1.6.3"
+  },
+  "devDependencies": {
+    "james-coffee": "~0.1.1",
+    "james": "~0.1.15"
+  }
+}
