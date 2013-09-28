@@ -9,7 +9,7 @@ module.exports.init = (domo) ->
   domo.route urlRegex, (res) ->
 
     async.map res.message.match(urlRegex), request, (err, responses) ->
-      return err if err?
+      return domo.error err if err?
 
       titles = responses.filter((response) ->
         return false unless response.statusCode is 200

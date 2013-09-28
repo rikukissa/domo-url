@@ -13,7 +13,7 @@ module.exports.init = function(domo) {
     return async.map(res.message.match(urlRegex), request, function(err, responses) {
       var titles;
       if (err != null) {
-        return err;
+        return domo.error(err);
       }
       titles = responses.filter(function(response) {
         var $;
