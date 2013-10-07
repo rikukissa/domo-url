@@ -1,6 +1,6 @@
 {
   "name": "domo-url",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "URL module for Domo-kun",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "async": "~0.2.9",
     "request": "~2.27.0",
     "cheerio": "~0.12.2",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "james-coffee": "~0.1.1",

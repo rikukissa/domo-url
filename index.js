@@ -1,10 +1,12 @@
-var async, cheerio, request, urlRegex;
+var async, cheerio, request, urlRegex, _;
 
 async = require('async');
 
 cheerio = require('cheerio');
 
 request = require('request');
+
+_ = require('underscore.string');
 
 urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 
@@ -24,7 +26,7 @@ module.exports.init = function(domo) {
         response.title = $('title').text();
         return !!response.title;
       }).map(function(response) {
-        return response.title;
+        return _.clean(response.title);
       }).join(', ');
       if (!!titles) {
         return domo.say(res.channel, titles);

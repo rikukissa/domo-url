@@ -1,6 +1,7 @@
 async   = require 'async'
 cheerio = require 'cheerio'
 request = require 'request'
+_   = require 'underscore.string'
 
 urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
 
@@ -22,7 +23,7 @@ module.exports.init = (domo) ->
         not not response.title
 
       .map (response) ->
-        return response.title
+        _.clean response.title
 
       .join(', ')
 
