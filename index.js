@@ -1,4 +1,4 @@
-var async, cheerio, init, parseTitle, request, sanitizeTitle, urlRegex, _;
+var async, cheerio, decode, init, parseTitle, request, sanitizeTitle, urlRegex, _;
 
 async = require('async');
 
@@ -22,25 +22,31 @@ sanitizeTitle = function(title) {
   return _.str.clean(title);
 };
 
+decode = function(body, headers) {
+  if (headers['content-type'].indexOf('utf-8') > -1) {
+    body = new Buffer(body, 'binary').toString('utf-8');
+  }
+  return body;
+};
+
 init = function(domo) {
   return domo.route(urlRegex, function(res) {
-    var urlRequests;
-    urlRequests = _.map(res.message.match(urlRegex), function(url) {
-      return {
-        encoding: 'utf-8',
-        uri: url
-      };
+    var req;
+    req = request.defaults({
+      encoding: 'binary'
     });
-    return async.map(urlRequests, request, function(err, responses) {
+    return async.map(res.message.match(urlRegex), req, function(err, responses) {
       var titles;
       if (err != null) {
         return domo.error(err);
       }
       titles = responses.filter(function(response) {
+        var body;
         if (response.statusCode !== 200) {
           return false;
         }
-        response.title = parseTitle(response.body);
+        body = decode(response.body, response.headers);
+        response.title = parseTitle(body);
         return !!response.title;
       }).map(function(response) {
         return sanitizeTitle(response.title);

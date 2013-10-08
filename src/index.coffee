@@ -4,6 +4,7 @@ request = require 'request'
 _       = require 'underscore'
 _.str   = require 'underscore.string'
 
+
 urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
 
 parseTitle = (html) ->
@@ -13,21 +14,25 @@ parseTitle = (html) ->
 sanitizeTitle = (title) ->
   _.str.clean title
 
+decode = (body, headers) ->
+  if headers['content-type'].indexOf('utf-8') > -1
+    body = new Buffer(body, 'binary').toString 'utf-8'
+  body
+
 init = (domo) ->
 
   domo.route urlRegex, (res) ->
-    urlRequests = _.map res.message.match(urlRegex), (url) ->
-      encoding: 'utf-8'
-      uri: url
+    req = request.defaults
+      encoding: 'binary'
 
-    async.map urlRequests, request, (err, responses) ->
+    async.map res.message.match(urlRegex), req, (err, responses) ->
       return domo.error err if err?
 
       titles = responses
       .filter (response) ->
         return false unless response.statusCode is 200
-
-        response.title = parseTitle response.body
+        body = decode response.body, response.headers
+        response.title = parseTitle body
 
         not not response.title
 
