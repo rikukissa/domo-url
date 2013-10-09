@@ -23,7 +23,7 @@ sanitizeTitle = function(title) {
 };
 
 decode = function(body, headers) {
-  if (headers['content-type'].indexOf('utf-8') > -1) {
+  if (headers['content-type'].toLowerCase().indexOf('utf-8') > -1) {
     body = new Buffer(body, 'binary').toString('utf-8');
   }
   return body;
