@@ -20,7 +20,6 @@ decode = (body, headers) ->
   body
 
 init = (domo) ->
-
   domo.route urlRegex, (res) ->
     req = request.defaults
       encoding: 'binary'
