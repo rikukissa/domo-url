@@ -11,8 +11,6 @@
   "license": "BSD",
   "dependencies": {
     "async": "~0.2.9",
-    "underscore.string": "~2.3.3",
-    "underscore": "~1.5.2",
     "coffee-script": "~1.7.1",
     "crawler": "~0.2.5"
   },

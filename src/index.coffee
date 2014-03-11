@@ -1,7 +1,5 @@
 async   = require 'async'
 Crawler = require('crawler').Crawler
-_       = require 'underscore'
-_.str   = require 'underscore.string'
 
 urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
 
