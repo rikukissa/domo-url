@@ -23,7 +23,7 @@ fetch = (res) ->
     @say res.channel, titles if not not titles
 
 routes = {}
-routes[urlRegex] = fetch
+routes['*'] = fetch
 
 module.exports =
   routes: routes
