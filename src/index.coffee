@@ -13,7 +13,10 @@ crawl = (url, done) ->
   crawler.queue url
 
 fetch = (res) ->
-  async.map res.message.match(urlRegex), crawl, (err, jQueries) =>
+  matches = res.message.match(urlRegex)
+  return unless matches?
+
+  async.map matches, crawl, (err, jQueries) =>
     return @error err if err?
 
     titles = jQueries.map ($) ->
