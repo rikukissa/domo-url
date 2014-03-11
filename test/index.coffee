@@ -22,7 +22,7 @@ describe 'URL regex route', ->
   it 'should return titles of multiple urls', (done) ->
     context =
       say: (chan, title) ->
-        assert.equal title, '    imgur: the simple image sharer, CodePen - Front End Developer Playground & Code Editor in the Browser'
+        assert.equal title, 'imgur: the simple image sharer, CodePen - Front End Developer Playground & Code Editor in the Browser'
         done()
 
     routeFn.call context,

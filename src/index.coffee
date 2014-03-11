@@ -20,7 +20,7 @@ fetch = (res) ->
     return @error err if err?
 
     titles = jQueries.map ($) ->
-      $('title').text()
+      $('title').text().trim()
     .join ', '
 
     @say res.channel, titles if not not titles
