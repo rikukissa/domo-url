@@ -4,7 +4,7 @@
   "description": "URL module for Domo-kun",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register -t 15000"
+    "test": "NODE_ENV=test mocha --compilers coffee:coffee-script/register -t 15000"
   },
   "repository": "",
   "author": "Riku Rouvila",

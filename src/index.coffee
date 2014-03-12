@@ -10,8 +10,12 @@ crawl = (url, done) ->
       done err, $
   crawler.queue url
 
+match = (message) ->
+  return [] unless message? and typeof message is 'string'
+  message.match(urlRegex) or []
+
 fetch = (res) ->
-  matches = res.message.match(urlRegex)
+  matches = match res.message
   return unless matches?
 
   async.map matches, crawl, (err, jQueries) =>
@@ -28,3 +32,8 @@ routes['*'] = fetch
 
 module.exports =
   routes: routes
+
+if process.env.NODE_ENV is 'test'
+  module.exports.crawl = crawl
+  module.exports.fetch = fetch
+  module.exports.match = match
