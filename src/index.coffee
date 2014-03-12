@@ -16,7 +16,6 @@ match = (message) ->
   message.match(urlRegex) or []
 
 fetch = (res, callback) ->
-  console.log res
   matches = match res.message
   return unless matches?
 
