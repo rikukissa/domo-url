@@ -6,6 +6,7 @@ urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/
 crawl = (url, done) ->
   crawler = new Crawler
     forceUTF8: true
+    timeout: 5000
     callback: (err, result, $) ->
       done err, $
   crawler.queue url
