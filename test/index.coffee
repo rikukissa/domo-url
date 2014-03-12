@@ -63,14 +63,17 @@ describe 'URL matcher', ->
   it 'should ignore not-url text in the middle of 2 urls, in front of them and after them', ->
     assert.deepEqual match('ldsldsllsd http://imgur.com/ adfa http://codepen.io/ sdfslkhf'), ['http://imgur.com/', 'http://codepen.io/']
 
-  it 'should return an empty erray if no url is found', ->
+  it 'should return an empty array if no url is found', ->
     assert.deepEqual match('foo'), []
 
-  it 'should return an empty erray if message is empty', ->
+  it 'should return an empty array if message is empty', ->
     assert.deepEqual match(''), []
 
-  it 'should return an empty erray if message is null', ->
+  it 'should return an empty array if message is null', ->
     assert.deepEqual match(null), []
 
-  it 'should return an empty erray if message is undefined', ->
+  it 'should return an empty array if message is undefined', ->
     assert.deepEqual match(), []
+
+  it 'should return an empty array if message is something weird', ->
+    assert.deepEqual match('joku oli vääntäny jonku valmiin libin millä pysty sylkee vaa {% thumbnail %} template tageihin että minkäkokosta tilataan'), []

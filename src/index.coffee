@@ -33,7 +33,7 @@ fetch = (res, callback) ->
     callback?()
 
 routes = {}
-routes['*'] = fetch
+routes[urlRegex] = fetch
 
 module.exports =
   routes: routes
