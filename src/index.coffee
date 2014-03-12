@@ -15,18 +15,22 @@ match = (message) ->
   return [] unless message? and typeof message is 'string'
   message.match(urlRegex) or []
 
-fetch = (res) ->
+fetch = (res, callback) ->
   matches = match res.message
   return unless matches?
 
   async.map matches, crawl, (err, jQueries) =>
     return @error err if err?
 
-    titles = jQueries.map ($) ->
+    titles = jQueries
+    .map ($) ->
+      return null unless $?
       $('title').text().trim()
-    .join ', '
+    .filter (title) -> title?
 
-    @say res.channel, titles if not not titles
+    @say res.channel, titles.join(', ') if titles.length > 0
+
+    callback?()
 
 routes = {}
 routes['*'] = fetch
