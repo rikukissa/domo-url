@@ -16,6 +16,7 @@ match = (message) ->
   message.match(urlRegex) or []
 
 fetch = (res, callback) ->
+  console.log res
   matches = match res.message
   return unless matches?
 
@@ -32,11 +33,11 @@ fetch = (res, callback) ->
 
     callback?()
 
-routes = {}
-routes[urlRegex] = fetch
-
 module.exports =
-  routes: routes
+  routes: [
+    path: urlRegex
+    handler: fetch
+  ]
 
 if process.env.NODE_ENV is 'test'
   module.exports.crawl = crawl
