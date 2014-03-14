@@ -13,7 +13,11 @@
     "async": "~0.2.9",
     "coffee-script": "~1.7.1",
     "crawler": "~0.2.5",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "request": "~2.34.0",
+    "iconv-lite": "~0.2.11",
+    "ent": "~0.1.0",
+    "jschardet": "~1.1.0"
   },
   "devDependencies": {
     "mocha": "~1.17.1"

@@ -4,7 +4,6 @@ describe 'Title fetcher', ->
   fetch = require('../index').fetch
 
   it 'should return the title of the sent url', (done) ->
-
     context =
       say: (chan, title) ->
         assert.equal title, 'Mongoose API v3.8.8'

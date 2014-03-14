@@ -1,17 +1,52 @@
 _       = require 'underscore'
 async   = require 'async'
-Crawler = require('crawler').Crawler
+request = require 'request'
+encoder = require './encoder'
 
 urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+titleRegex = /(<\s*title[^>]*>(.+?)<\s*\/\s*title)>/
+charsetRegex = /charset=(.*)($|;)/
 
 crawl = (url, done) ->
-  crawler = new Crawler
-    forceUTF8: true
-    timeout: 5000
-    callback: (err, result, $) ->
-      done err, $
+  chunks = []
+  headers = null
+  title = null
 
-  crawler.queue url
+  request
+    url: url
+    encoding: null
+
+  .on 'data', (chunk) ->
+    chunks.push chunk
+
+    unless headers?
+      headers = @response.headers
+
+      unless headers['content-type'].indexOf('text/html') > -1
+        return @abort()
+
+    # Try to convert html to utf8
+    charset = null
+    if headers['content-type'].indexOf('charset=') > -1
+      match = headers['content-type'].match(/charset=(.*)($|;)/)
+      charset = match[1] if match?[1]?
+
+    html = _.map chunks, (chunk) ->
+      encoder chunk, charset
+    .join ''
+
+    match = titleRegex.exec html
+
+    if match?[2]?
+      title = match[2]
+      return @abort()
+
+  .on 'error', (err) ->
+    done err
+
+  .on 'end', ->
+    done null, title
+
 
 match = (message) ->
   return [] unless message? and typeof message is 'string'
@@ -21,15 +56,14 @@ fetch = (res, callback) ->
   matches = match res.message
   return unless matches?
 
-  async.map matches, crawl, (err, jQueries) =>
+  async.map matches, crawl, (err, titles) =>
 
     return @error.apply this, _.pluck(err, 'message') if err?
 
-    titles = jQueries
-    .map ($) ->
-      return null unless $?
-      $('title').text().trim()
-    .filter (title) -> title?
+    titles = _.filter titles, (title) ->
+      title?
+    .map (title) ->
+      title.trim()
 
     @say res.channel, titles.join(', ') if titles.length > 0
 
