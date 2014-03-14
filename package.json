@@ -12,7 +12,8 @@
   "dependencies": {
     "async": "~0.2.9",
     "coffee-script": "~1.7.1",
-    "crawler": "~0.2.5"
+    "crawler": "~0.2.5",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "mocha": "~1.17.1"

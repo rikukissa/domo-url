@@ -1,3 +1,4 @@
+_       = require 'underscore'
 async   = require 'async'
 Crawler = require('crawler').Crawler
 
@@ -9,6 +10,7 @@ crawl = (url, done) ->
     timeout: 5000
     callback: (err, result, $) ->
       done err, $
+
   crawler.queue url
 
 match = (message) ->
@@ -20,7 +22,8 @@ fetch = (res, callback) ->
   return unless matches?
 
   async.map matches, crawl, (err, jQueries) =>
-    return @error err if err?
+
+    return @error.apply this, _.pluck(err, 'message') if err?
 
     titles = jQueries
     .map ($) ->
