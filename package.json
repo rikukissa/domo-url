@@ -6,6 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers coffee:coffee-script/register -t 15000"
   },
+  "tags": ["domo-kun", "domo", "url", "title"],
   "repository": "",
   "author": "Riku Rouvila",
   "license": "MIT",
