@@ -8,7 +8,7 @@
   },
   "repository": "",
   "author": "Riku Rouvila",
-  "license": "BSD",
+  "license": "MIT",
   "dependencies": {
     "async": "~0.2.9",
     "coffee-script": "~1.7.1",
