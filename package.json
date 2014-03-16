@@ -12,7 +12,6 @@
   "dependencies": {
     "async": "~0.2.9",
     "coffee-script": "~1.7.1",
-    "crawler": "~0.2.5",
     "underscore": "~1.6.0",
     "request": "~2.34.0",
     "iconv-lite": "~0.2.11",
