@@ -15,6 +15,8 @@ crawl = (url, done) ->
   request
     url: url
     encoding: null
+    headers:
+      'Accept-Language': 'en-US,en;q=0.8,fi;q=0.6'
 
   .on 'data', (chunk) ->
     chunks.push chunk
