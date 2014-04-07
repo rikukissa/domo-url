@@ -3,7 +3,7 @@ async   = require 'async'
 request = require 'request'
 encoder = require './encoder'
 
-urlRegex = /(\b(?:https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
+urlRegex = /(\b(?:https?):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
 titleRegex = /(<\s*title[^>]*>(.+?)<\s*\/\s*title)>/
 charsetRegex = /charset=(.*)($|;)/
 
