@@ -55,12 +55,13 @@ match = (message) ->
   message.match(urlRegex) or []
 
 fetch = (res, callback) ->
+
   matches = match res.message
   return unless matches?
 
   async.map matches, crawl, (err, titles) =>
 
-    return @error.apply this, _.pluck(err, 'message') if err?
+    return @error err.message if err?
 
     titles = _.filter titles, (title) ->
       title?
