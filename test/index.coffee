@@ -6,7 +6,7 @@ describe 'Title fetcher', ->
   it 'should return the title of the sent url', (done) ->
     context =
       say: (chan, title) ->
-        assert.equal title, 'Mongoose API v3.8.8'
+        assert.equal title, 'Mongoose API v3.8.12'
         done()
 
     fetch.call context,
