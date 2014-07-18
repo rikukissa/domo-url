@@ -24,7 +24,7 @@ crawl = (url, done) ->
     unless headers?
       headers = @response.headers
 
-      unless headers['content-type'].indexOf('text/html') > -1
+      unless headers['content-type']?.indexOf('text/html') > -1
         return @abort()
 
     # Try to convert html to utf8

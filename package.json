@@ -1,6 +1,6 @@
 {
   "name": "domo-url",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "URL module for Domo-kun",
   "main": "index.js",
   "scripts": {
