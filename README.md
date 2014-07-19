@@ -17,6 +17,10 @@ npm install domo-url
 After this you can just add domo-url to Domo's config or load it on runtime by using __!load__ command if you basic routes are enabled!
 
 ## Changelog
+
+### 0.2
+* Uses [url-to-title](https://github.com/rikukissa/url-to-title) module for fetching urls
+
 ### 0.1
 * Now uses request and iconv-lite to handle crawling/encoding.
 * ### Breaking changes

@@ -1,12 +1,17 @@
 {
   "name": "domo-url",
-  "version": "0.1.6",
+  "version": "0.2",
   "description": "URL module for Domo-kun",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers coffee:coffee-script/register -t 15000"
   },
-  "keywords": ["domo-kun", "domo", "url", "title"],
+  "keywords": [
+    "domo-kun",
+    "domo",
+    "url",
+    "title"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/rikukissa/domo-url.git"
@@ -14,13 +19,9 @@
   "author": "Riku Rouvila",
   "license": "MIT",
   "dependencies": {
-    "async": "~0.2.9",
     "coffee-script": "~1.7.1",
     "underscore": "~1.6.0",
-    "request": "~2.34.0",
-    "iconv-lite": "~0.2.11",
-    "he": "~0.4.1",
-    "jschardet": "~1.1.0"
+    "url-to-title": "~1.0.1"
   },
   "devDependencies": {
     "mocha": "~1.17.1"
